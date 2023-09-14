@@ -22,21 +22,6 @@ mongoose
     console.log('DB connections succesfull!');
   });
 
-// const testTour = new Tour({
-//   name: 'The Park Center_2',
-//   price: 401,
-//   rating: 4.4,
-// });
-
-// testTour
-//   .save()
-//   .then((doc) => {
-//     console.log(doc, 'document saved sucessfully!');
-//   })
-//   .catch((err) => {
-//     console.log('ERROR', err.message);
-//   });
-
 // to check the env of the app either development or production
 // console.log(app.get('env'));
 // console.log(process.env);

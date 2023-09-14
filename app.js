@@ -7,6 +7,8 @@ const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
+// const compression = require('compression');
+
 const AppError = require('./utiles/appError');
 const globalErrorHandler = require('./controllers/errorController');
 const tourRouter = require('./routes/tourRoutes');
@@ -18,7 +20,7 @@ const viewRouter = require('./routes/viewRoutes');
 const app = express();
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
-
+// hello
 // SERVING STATIC FILES
 // app.use(express.static(`${__dirname}/public`));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -45,6 +47,8 @@ app.use('/api', limiter);
 
 // Body parser, reading data from body into req.body
 app.use(express.json({ limit: '10kb' }));
+app.use(express.urlencoded({ extended: true, limit: '10kb' }));
+
 app.use(cookieParser());
 // Data sanitization against NoSql query injection
 app.use(mongoSanitize());
@@ -63,22 +67,29 @@ app.use(
   })
 );
 
+// the below one will compress the text before sending to the client
+// app.use(compression());
 // Prwevent parameter pollution
+
 app.use(hpp());
 
 // tEST MIDLEWARE
 app.use((req, res, next) => {
-  console.log('hello from the middleware !!!!');
+  //  console.log('hello from the middleware !!!!');
 
   next();
 });
+//
 // Test middleware
-app.use((req, res, next) => {
-  req.reqTime = new Date().toISOString();
-  // console.log(req.headers);
-  console.log(req.cookies, 'Cookies');
-  next();
-});
+// app.use((req, res, next) => {
+//   req.reqTime = new Date().toISOString();
+//   // console.log(req.headers);
+//   console.log(
+//     req.cookies,
+//     'Cookies from server--cookie-parser.  located in app.js file'
+//   );
+//   next();
+// });
 
 // 3)ROUTES
 
