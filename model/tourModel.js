@@ -164,14 +164,14 @@ tourSchema.pre(/^find/, function (next) {
   next();
 });
 
-tourSchema.post(/^find/, function (doc, next) {
-  // console.log(doc, 'DOCPOST QUEry');
+// tourSchema.post(/^find/, function (doc, next) {
+//   // console.log(doc, 'DOCPOST QUEry');
 
-  // /*to find how much time it takes to execute the query use below logic*\
+//   // /*to find how much time it takes to execute the query use below logic*\
 
-  console.log(`QUERY TOOK ${Date.now() - this.start} MilliSeconds!`);
-  next();
-});
+//   console.log(`QUERY TOOK ${Date.now() - this.start} MilliSeconds!`);
+//   next();
+// });
 //AGGREAGTION MIDDLEWARE
 
 // tourSchema.pre('aggregate', function (next) {

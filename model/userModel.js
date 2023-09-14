@@ -87,7 +87,7 @@ userSchema.methods.correctPassword = async function (
   candidatepassword /*Original paasword coming from the user  */,
   userPassword /*encrypted paasword from the db  */
 ) {
-  console.log(candidatepassword, userPassword, 'candidate', 'user');
+  // console.log(candidatepassword, userPassword, 'candidate', 'user');
   return await bcrypt.compare(candidatepassword, userPassword);
 };
 
@@ -97,7 +97,7 @@ userSchema.methods.changedPasswordAfter = function (JWTTimesStamp) {
       this.passwordChangedAt.getTime() / 1000,
       10
     );
-    console.log(changedTimeStamp, JWTTimesStamp, 'password', 'TimeStamp');
+    // console.log(changedTimeStamp, JWTTimesStamp, 'password', 'TimeStamp');
     return JWTTimesStamp < changedTimeStamp; // 100 <200
   }
   return false;
@@ -108,11 +108,11 @@ userSchema.methods.createPasswordResetToken = function () {
     .createHash('sha256')
     .update(resetToken)
     .digest('hex');
-  console.log(
-    { resetToken },
-    this.passwordResetToken,
-    'userModelPassword reset token'
-  );
+  // console.log(
+  //   { resetToken },
+  //   this.passwordResetToken,
+  //   'userModelPassword reset token'
+  // );
 
   this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
   return resetToken;

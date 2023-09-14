@@ -10,7 +10,7 @@ exports.deleteOne = (Model) =>
     if (!doc) {
       return next(new AppError('No document found with that id', 404));
     }
-    console.log((tour, 'Tour'));
+    // console.log((tour, 'Tour'));
     res.status(204).json({
       status: 'success',
       data: null,
@@ -69,7 +69,7 @@ exports.getAll = (Model) =>
     // To allow for nested get reviews on tour
     let filter = {};
     if (req.params.tourId) filter = { tour: req.params.tourId };
-    console.log(req.params.tourId, 'tour Id For review');
+    // console.log(req.params.tourId, 'tour Id For review');
 
     const features = new APIFeatures(Model.find(filter), req.query)
       .filter()

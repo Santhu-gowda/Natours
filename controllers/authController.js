@@ -7,16 +7,16 @@ const AppError = require('../utiles/appError');
 const sendEmail = require('../utiles/email');
 
 const signInTOken = (id) => {
-  console.log(jwt, 'json Web TOKEN');
+  // console.log(jwt, 'json Web TOKEN');
   return jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN,
   });
 };
 
 const createSendToken = (user, statusCode, res) => {
-  console.log(user, 'user');
+  // console.log(user, 'user');
   const token = signInTOken(user._id);
-  console.log(token, 'Token from signIn');
+  // console.log(token, 'Token from signIn');
   const cookieOptions = {
     expires: new Date(
       Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
@@ -24,7 +24,8 @@ const createSendToken = (user, statusCode, res) => {
 
     httpOnly: true,
   };
-  console.log(cookieOptions, 'cookiesOpttions!!!!!!!!', token, 'Token');
+  // console
+  // .log(cookieOptions, 'cookiesOpttions!!!!!!!!', token, 'Token');
   if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
   res.cookie('jwt', token, cookieOptions);
 
@@ -41,10 +42,10 @@ const createSendToken = (user, statusCode, res) => {
 };
 
 exports.signup = catchAsync(async (req, res, next) => {
-  console.log(req.body, 'body meassge');
+  // console.log(req.body, 'body meassge');
   const newUser = await User.create(req.body);
   createSendToken(newUser, 201, res);
-  console.log(newUser, 'NEWUSER!!!!');
+  // console.log(newUser, 'NEWUSER!!!!');
 });
 
 exports.login = async (req, res, next) => {
@@ -139,11 +140,11 @@ exports.isLoggedIn = async (req, res, next) => {
         req.cookies.jwt,
         process.env.JWT_SECRET
       );
-      console.log(decoded, 'decoded');
+      // console.log(decoded, 'decoded');
       // 3)check if user still exists
 
       const currentUser = await User.findById(decoded.id);
-      console.log(currentUser, 'current user from auth file');
+      // console.log(currentUser, 'current user from auth file');
       if (!currentUser) {
         return next();
       }
@@ -204,7 +205,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
       message: 'Token sent to email',
     });
   } catch (err) {
-    console.log(err, 'error for send mail!');
+    // console.log(err, 'error for send mail!');
     user.passwordResetToken = undefined;
     user.passwordResetExpires = undefined;
     await user.save({ validateBeforeSave: false });

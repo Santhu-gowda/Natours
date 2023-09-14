@@ -32,8 +32,8 @@ const reviews = JSON.parse(
   fs.readFileSync(`${__dirname}/reviews.json`, 'utf-8')
 );
 
-const toursLength = tours.length;
-console.log('toursLenth:', toursLength, tours, 'toursssss!!!!!');
+// const toursLength = tours.length;
+
 // IMPORT DATA IN TO THE DB
 const importData = async () => {
   try {
