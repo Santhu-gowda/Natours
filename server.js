@@ -14,10 +14,12 @@ const app = require('./app');
 //   // Handle the error or exit the application gracefully.
 // }
 
-const DB = process.env.DATABASE_TOURS.replace(
-  '<PASSWORD>',
-  process.env.DATABASE_TOURS_PASSWORD
-);
+// const DB = process.env.DATABASE_TOURS.replace(
+//   '<PASSWORD>',
+//   process.env.DATABASE_TOURS_PASSWORD
+// );
+
+const DB = process.env.DATABASE_TOURS;
 mongoose
   .connect(
     DB
