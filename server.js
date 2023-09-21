@@ -4,6 +4,16 @@ dotenv.config({ path: './config.env' });
 const app = require('./app');
 
 // replacing the password
+// if (process.env.DATABASE_TOURS) {
+//   const DB = process.env.DATABASE_TOURS.replace(
+//     '<PASSWORD>',
+//     process.env.DATABASE_TOURS_PASSWORD
+//   )
+// } else {
+//   console.error('DATABASE_TOURS environment variable is not defined.');
+//   // Handle the error or exit the application gracefully.
+// }
+
 const DB = process.env.DATABASE_TOURS.replace(
   '<PASSWORD>',
   process.env.DATABASE_TOURS_PASSWORD
